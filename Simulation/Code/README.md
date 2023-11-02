@@ -1,1 +1,1 @@
-Create a sub-folder for the ABM code in C++ and Julia.
+The ABM code used for generating simulation output.
