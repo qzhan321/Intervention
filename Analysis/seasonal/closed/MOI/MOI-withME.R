@@ -45,10 +45,6 @@ f <- read.table(paste0("~/others/papersOfficial/FOI/analysis/utils/NbVarGenes_MO
 
 a <- min(f$DBLa_upsBC_rep_size)
 b <- max(f$DBLa_upsBC_rep_size)
-
-p <- f$n/sum(f$n)
-names(p) <- as.character(f$DBLa_upsBC_rep_size)
-
 s_single <- max(45, b)
 
 preIRS <- 200
