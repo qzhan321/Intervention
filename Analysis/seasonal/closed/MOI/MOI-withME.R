@@ -26,7 +26,6 @@ sampledHostsSaveDir1 <- paste0(sampledHostsSaveDir0, seasonality, "/")
 dir.create(sampledHostsSaveDir1)
 sampledHostsSaveDir2 <- paste0(sampledHostsSaveDir1, openness, "/")
 dir.create(sampledHostsSaveDir2)
-fName <- "withME"
 sampledHostsSaveDir3 <- paste0(sampledHostsSaveDir2, fName, "/")
 dir.create(sampledHostsSaveDir3)
 
