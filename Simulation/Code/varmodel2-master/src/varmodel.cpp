@@ -1695,7 +1695,7 @@ void do_IRS_event() {
     update_biting_rate_change(pop);
     update_biting_time(pop,false);
     if(IMMIGRATION_ON) {
-        update_immigration_time(pop, true);
+        update_immigration_time(pop, false);
     }
     RETURN();
 }
@@ -1707,7 +1707,7 @@ void do_MDA_event() {
     PRINT_DEBUG(1, "schedule next MDA event timing for pop %llu", pop->id);
     update_MDA_time(pop);
     if(IMMIGRATION_ON) {
-        update_immigration_time(pop, true);
+        update_immigration_time(pop, false);
     }
     RETURN();
 }
