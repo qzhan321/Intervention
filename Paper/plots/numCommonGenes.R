@@ -127,11 +127,11 @@ for (i in 1:length(seasonality)) {
       imm <- imms[[k]]
       saveDir4 <- paste0(saveDir3, imm, "/")
       dir.create(saveDir4)
-      
+      nums_w_reps_single <- nums_w_reps[[k]]
       commonGenesAll <- NULL
       for (m in 1:length(nums)) {
         num <- nums[m]
-        if (num %in% nums_w_reps) {
+        if (num %in% nums_w_reps_single) {
           reps <- 0:2
         } else {
           reps <- 0
