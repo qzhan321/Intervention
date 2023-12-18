@@ -60,16 +60,16 @@ for (i in 1:length(seasonality)) {
           db<-dbConnect(SQLite(),dbname = sampleSqlFile)
           sc<-"select * from sampled_duration"   
           durInfo <- fetchdb(db, sc)
-          durInfo <- durInfo %>% filter((time >= (preIRS - 3) * T_YEAR & time < preIRS * T_YEAR)| 
-                                          (time >= (preIRS + 0) * T_YEAR & time - duration > preIRS * T_YEAR + 14 & time < (preIRS + 3) * T_YEAR)|
-                                          (time >= (preIRS + 7) * T_YEAR))
+          durInfo <- durInfo %>% filter((time - duration > (preIRS - 3) * T_YEAR & time < preIRS * T_YEAR)| 
+                                        (time - duration > preIRS * T_YEAR & time < (preIRS + 3) * T_YEAR)|
+                                        (time - duration > (preIRS + 7) * T_YEAR & time < (preIRS + 10) * T_YEAR))
           durTable <- durInfo 
           durTable$rep <- r
           durTable$num <- num
           durTable <- durTable %>% mutate(IRS = case_when(
-            time < preIRS * T_YEAR ~ "Pre-IRS",
-            time >= preIRS*T_YEAR & time < (preIRS + 3) * T_YEAR ~ paste0("Early Stage of IRS"),
-            time >= (preIRS + 7)*T_YEAR ~ paste0("Late Stage of IRS")
+            (time - duration > (preIRS - 3) * T_YEAR & time < preIRS * T_YEAR) ~ "Pre-IRS",
+            (time - duration > preIRS * T_YEAR & time < (preIRS + 3) * T_YEAR) ~ paste0("Early Stage of IRS"),
+            (time - duration > (preIRS + 7) * T_YEAR & time < (preIRS + 10) * T_YEAR) ~ paste0("Late Stage of IRS")
           ))
           
           dbDisconnect(db)
