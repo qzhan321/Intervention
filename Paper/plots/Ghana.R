@@ -19,7 +19,7 @@ pAll <- list()
 # MOI
 cols <- c("dark orange", "dark blue", "dark blue")
 nums <- c(1,4,5)
-labels <- c("Pre-IRS", "IRS", "Right Post-IRS")
+labels <- c("Pre-IRS", "IRS", "Post-IRS")
 for (i in 1:length(nums)) {
   num <- nums[i]
   col <- cols[i]
@@ -67,15 +67,15 @@ load(file = "/project2/pascualmm/QZ/papersOfficial/intervention/analysis/files/P
 dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post IRS (2015)")) %>% 
   mutate(state = case_when(state == "2y into IRS" ~ "IRS",
                            state == "pre IRS" ~ "Pre-IRS",
-                           state == "right post IRS (2015)" ~ "Right Post-IRS"))
-dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Right Post-IRS"))
+                           state == "right post IRS (2015)" ~ "Post-IRS"))
+dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
 dfAll$age <- as.character(dfAll$age)
 colnames(dfAll)[2] <- "Age"
 ageSel <- c("1-10", ">20")
 dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
 sizeV <- 31
 nums <- c(1,4,5)
-labels <- c("Pre-IRS", "IRS", "Right Post-IRS")
+labels <- c("Pre-IRS", "IRS", "Post-IRS")
 for (i in 1:length(nums)) {
   num <- nums[i]
   label <- labels[i]
@@ -107,13 +107,22 @@ for (i in 1:length(nums)) {
   }
   pAll[[i]] <- p
 }
+
 ggsave(paste0(saveDir, "Ghana-PTS-survey_1.pdf"), pAll[[1]] + rremove("xlab") + rremove("ylab"), width = 6, height = 6)
 ggsave(paste0(saveDir, "Ghana-PTS-survey_4.pdf"), pAll[[2]] + rremove("xlab") + rremove("ylab"), width = 6, height = 6)
 ggsave(paste0(saveDir, "Ghana-PTS-survey_5.pdf"), pAll[[3]] + rremove("xlab") + rremove("ylab"), width = 6, height = 6)
 
 
 
-# PTS by age zoom in
+
+
+
+
+
+
+
+
+
 rm(list = ls())
 saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/writings/simulation4/plots/Ghana/PTSAgeDiffZoomin/"
 pAll <- list()
@@ -121,15 +130,15 @@ load(file = "/project2/pascualmm/QZ/papersOfficial/intervention/analysis/files/P
 dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post IRS (2015)")) %>% 
   mutate(state = case_when(state == "2y into IRS" ~ "IRS",
                            state == "pre IRS" ~ "Pre-IRS",
-                           state == "right post IRS (2015)" ~ "Right Post-IRS"))
-dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Right Post-IRS"))
+                           state == "right post IRS (2015)" ~ "Post-IRS"))
+dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
 dfAll$age <- as.character(dfAll$age)
 colnames(dfAll)[2] <- "Age"
 ageSel <- c("1-10", ">20")
 dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
 sizeV <- 31
 nums <- c(1,4,5)
-labels <- c("Pre-IRS", "IRS", "Right Post-IRS")
+labels <- c("Pre-IRS", "IRS", "Post-IRS")
 for (i in 1:length(nums)) {
   num <- nums[i]
   label <- labels[i]
