@@ -13,7 +13,7 @@ wd <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/ac
 seasonality <- "seasonal"
 openness <- "closed"
 prefix<-"sim"
-nums <- c(101:110, 115:123)
+nums <- c(101:110)
 saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/diversity/numGenes/")
 dir.create(saveDir0)
 saveDir1 <- paste0(saveDir0, seasonality, "/")
