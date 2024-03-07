@@ -31,7 +31,7 @@ dir.create(saveDir6)
 
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/infTablePresence/")
 prefix<-"sim"
-nums <- c(101:110, 115:123)
+nums <- c(101:110)
 
 PTSDir<-function(mat){
   newmat<-tcrossprod(mat>0)
