@@ -31,7 +31,7 @@ dir.create(sampledHostsSaveDir3)
 
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/infTablePresence/")
 prefix <- "sim"
-nums <- c(101:109, 115:121)
+nums <- c(101:109)
 
 load(paste0("~/others/papersOfficial/FOI/analysis/utils/s_givenMOI_list"))
 p_s_givenMOI <- s_givenMOI_list
