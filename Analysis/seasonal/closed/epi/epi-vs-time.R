@@ -25,11 +25,11 @@ fetchdb<-function(dbname,query,numQuery = 20000000) {
 IRSType <- "2yIRS"
 
 if (IRSType == "10yIRS") {
-  numsList <- list(101:110,115:123)
-  nums_w_reps <- c(107:110,120:123)
+  numsList <- list(101:110)
+  nums_w_reps <- c(107:110)
 } else {
-  numsList <- list(1:14,15:23)
-  nums_w_reps <- c(10:14,20:23)
+  numsList <- list(1:14)
+  nums_w_reps <- c(10:14)
 }
 
 prefix <- "sim"
