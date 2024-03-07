@@ -34,20 +34,16 @@ postIRS <- 10-IRSDur
 
 type <- "dir"
 numsPlotList <- list(
-  "seasonal closed" = list(101:107,115:121),
-  "seasonal semi-open" = list(201:207, 216:222,  
-                              301:307, 316:322),
+  "seasonal closed" = list(101:107),
+  "seasonal semi-open" = list(201:207,  
+                              301:307),
   "seasonal regionally-open" = list(201:207,219:227,
-                                    237:243,255:263,
-                                    301:307,319:327,
-                                    337:343,355:363),
-  "non-seasonal closed" = list(101:107, 115:121),
+                                    237:243,255:263),
+  "non-seasonal closed" = list(101:107),
   "non-seasonal semi-open" = list(201:207,
-                                  216:222,301:307,316:322),
+                                  301:307),
   "non-seasonal regionally-open" = list(201:207,219:227,
-                                        237:243,255:263,
-                                        301:307,319:327,
-                                        337:343,355:363)
+                                        237:243,255:263)
 )
 labelsList <- list(
   "seasonal closed" = list("Seasonal \nClosed \n \n", "Seasonal \nClosed \n \n"),
