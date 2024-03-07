@@ -27,18 +27,15 @@ dir.create(saveDir0)
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/PTSCompleteOverlap/")
 
 numsPlotList <- list(
-  "seasonal closed" = list(101:109, 115:120),
-  "seasonal semi-open" = list(201:208, 216:223,
-                              301:308, 316:323),
-  "seasonal regionally-open" = list(201:208,219:230,237:244,255:265,
-                                    301:307,319:328,337:343,355:364),
-  "non-seasonal closed" = list(101:110, 115:124),
+  "seasonal closed" = list(101:109),
+  "seasonal semi-open" = list(201:208,
+                              301:308),
+  "seasonal regionally-open" = list(201:208,219:230,237:244,255:265),
+  "non-seasonal closed" = list(101:110),
   "non-seasonal semi-open" = list(201:211,
-                                  216:225,301:311,316:325),
+                                  301:311),
   "non-seasonal regionally-open" = list(201:209,219:229,
-                                        237:244,255:264,
-                                        301:308,319:327,
-                                        337:344,355:363)
+                                        237:244,255:264)
 )
 seasonality <- c("seasonal", "non-seasonal")
 openness <- c("closed", "semi-open", "regionally-open")
