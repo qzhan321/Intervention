@@ -32,57 +32,40 @@ IRSType <- paste0(IRSDur, "yIRS")
 postIRS <- 10-IRSDur
 
 numsPlotList <- list(
-  "seasonal closed" = list(101:110,115:123),
-  "seasonal semi-open" = list(201:211, 216:225,  
-                              301:311, 316:325),
+  "seasonal closed" = list(101:110),
+  "seasonal semi-open" = list(201:211,  
+                              301:311),
   "seasonal regionally-open" = list(201:209,219:229,
-                                    237:245,255:265,
-                                    301:308,319:328,
-                                    337:344,355:364),
-  "non-seasonal closed" = list(101:111, 115:124),
+                                    237:245,255:265),
+  "non-seasonal closed" = list(101:111),
   "non-seasonal semi-open" = list(201:211,
-                                  216:225,301:311,316:326),
+                                  301:311),
   "non-seasonal regionally-open" = list(201:210,219:228,
-                                        237:246,255:264,
-                                        301:309,319:327,
-                                        337:345,355:363)
+                                        237:246,255:264)
 )
 labelsList <- list(
-  "seasonal closed" = list("Seasonal \nClosed \n \n", "Seasonal \nClosed \n \n"),
-  "seasonal semi-open" = list("Seasonal \nSemi-open \nBaseline Migration \n", "Seasonal \nSemi-open \nBaseline Migration \n", 
-                              "Seasonal \nSemi-open \nHigh Migration \n", "Seasonal \nSemi-open \nHigh Migration \n"),
+  "seasonal closed" = list("Seasonal \nClosed \n \n"),
+  "seasonal semi-open" = list("Seasonal \nSemi-open \nBaseline Migration \n", "Seasonal \nSemi-open \nHigh Migration \n"),
   "seasonal regionally-open" = list("Seasonal \nRegionally-open \nBaseline Migration \nMedium Pool",
                                     "Seasonal \nRegionally-open \nBaseline Migration \nLarge Pool",
                                     "Seasonal \nRegionally-open \nHigh Migration \nMedium Pool",
-                                    "Seasonal \nRegionally-open \nHigh Migration \nLarge Pool",
-                                    "Seasonal \nRegionally-open \nBaseline Migration \nMedium Pool",
-                                    "Seasonal \nRegionally-open \nBaseline Migration \nLarge Pool",
-                                    "Seasonal \nRegionally-open \nHigh Migration \nMedium Pool",
                                     "Seasonal \nRegionally-open \nHigh Migration \nLarge Pool"),
-  "non-seasonal closed" = list("Non-seasonal \nClosed \n \n", "Non-seasonal \nClosed \n \n"),
-  "non-seasonal semi-open" = list("Non-seasonal \nSemi-open \nBaseline Migration \n", "Non-seasonal \nSemi-open \nBaseline Migration \n",  
-                                  "Non-seasonal \nSemi-open \nHigh Migration \n", "Non-seasonal \nSemi-open \nHigh Migration \n"),
+  "non-seasonal closed" = list("Non-seasonal \nClosed \n \n"),
+  "non-seasonal semi-open" = list("Non-seasonal \nSemi-open \nBaseline Migration \n", "Non-seasonal \nSemi-open \nHigh Migration \n"),
   "non-seasonal regionally-open" = list("Non-seasonal \nRegionally-open \nBaseline Migration \nMedium Pool",
                                         "Non-seasonal \nRegionally-open \nBaseline Migration \nLarge Pool",
                                         "Non-seasonal \nRegionally-open \nHigh Migration \nMedium Pool",
-                                        "Non-seasonal \nRegionally-open \nHigh Migration \nLarge Pool",
-                                        "Non-seasonal \nRegionally-open \nBaseline Migration \nMedium Pool",
-                                        "Non-seasonal \nRegionally-open \nBaseline Migration \nLarge Pool",
-                                        "Non-seasonal \nRegionally-open \nHigh Migration \nMedium Pool",
                                         "Non-seasonal \nRegionally-open \nHigh Migration \nLarge Pool")
-  
 )
 immsList <- list(
-  "seasonal closed" = list("Three-year", "Four-year"),
-  "seasonal semi-open" = list("Three-year", "Four-year",
-                              "Three-year", "Four-year"),
-  "seasonal regionally-open" = list("Three-year", "Three-year", "Three-year", "Three-year",
-                                    "Four-year", "Four-year", "Four-year", "Four-year"),
-  "non-seasonal closed" = list("Three-year", "Four-year"),
-  "non-seasonal semi-open" = list("Three-year", "Four-year",
-                                  "Three-year", "Four-year"),
-  "non-seasonal regionally-open" = list("Three-year", "Three-year", "Three-year", "Three-year",
-                                        "Four-year", "Four-year", "Four-year", "Four-year")
+  "seasonal closed" = list("Three-year"),
+  "seasonal semi-open" = list("Three-year",
+                              "Three-year"),
+  "seasonal regionally-open" = list("Three-year", "Three-year", "Three-year", "Three-year"),
+  "non-seasonal closed" = list("Three-year"),
+  "non-seasonal semi-open" = list("Three-year",
+                                  "Three-year"),
+  "non-seasonal regionally-open" = list("Three-year", "Three-year", "Three-year", "Three-year")
 )
 saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/writings/simulation", run, "/plots/")
 dir.create(saveDir0)
@@ -95,16 +78,14 @@ state <- "true"
 N <- 10000
 sizeV <- 31
 nums_w_reps_list <- list(
-  "seasonal closed" = list(107:110,120:123),
-  "seasonal semi-open" = list(208:211,222:225,308:311,323:325),
+  "seasonal closed" = list(107:110),
+  "seasonal semi-open" = list(208:211,308:311),
   "seasonal regionally-open" = list(206:209,226:229,242:245,
-                                    262:265,306:308,325:328,
-                                    342:344,361:364),
-  "non-seasonal closed" = list(108:110,121:123),
-  "non-seasonal semi-open" = list(208:210,222:224,307:310,322:324),
+                                    262:265),
+  "non-seasonal closed" = list(108:110),
+  "non-seasonal semi-open" = list(208:210,307:310),
   "non-seasonal regionally-open" = list(207:209,225:227,242:245,
-                                        261:263,306:308,324:326,
-                                        342:344,360:362)
+                                        261:263)
 )
 for (i in 1:length(seasonality)) {
   s <- seasonality[i]
