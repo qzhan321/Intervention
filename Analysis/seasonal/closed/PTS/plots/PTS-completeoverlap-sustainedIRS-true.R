@@ -14,7 +14,7 @@ state <- "true"
 types <- c("dir", "nondir")
 seasonality <- "seasonal"
 openness <- "closed"
-nums <- c(101:109, 115:121)
+nums <- c(101:109)
 prefix <- "sim"
 IRSDur <- 10
 preIRS <- 200
