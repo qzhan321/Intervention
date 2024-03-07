@@ -34,7 +34,7 @@ fetchdb<-function(dbname,query,numQuery = 20000000) {
   return(er)
 }
 
-nums <- c(101:110, 115:123, 1:14)
+nums <- c(101:110, 1:14)
 prefix <- "sim"
 
 f <- read.table(paste0("~/others/papersOfficial/FOI/analysis/utils/NbVarGenes_MOI1_upsBC_AllSurveys_Weight.txt"), header = T)
