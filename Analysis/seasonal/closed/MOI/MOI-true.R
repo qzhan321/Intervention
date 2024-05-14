@@ -1,9 +1,6 @@
 rm(list=ls())
 suppressPackageStartupMessages({
-  library(ggplot2)
   library(dplyr)
-  library(cowplot)
-  library(stringr)
   library(RSQLite)
 })
 run <- 4
