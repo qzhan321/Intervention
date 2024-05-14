@@ -24,7 +24,7 @@ nums <- c(101:110)
 preIRS <- 200
 IRSDur <- 10
 T_YEAR <- 360
-layers <- c(preIRS - 1, preIRS + 1, preIRS + 2)*T_YEAR  + 300
+layers <- c(preIRS - 1, preIRS + 1)*T_YEAR  + 300
 
 nums_w_reps <- NULL
 for (i in 1:length(nums)) {
