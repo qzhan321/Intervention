@@ -26,20 +26,10 @@ IRSDur <- 10
 T_YEAR <- 360
 layers <- c(preIRS - 1, preIRS + 1)*T_YEAR  + 300
 
-nums_w_reps <- NULL
 for (i in 1:length(nums)) {
   num <- nums[i]
-  if (num %in% nums_w_reps) {
-    reps <- 0:2
-  } else {
-    reps <- 0
-  }
-  MOIAll <- NULL
-  for (r in reps) {
-    load(paste0(readDir, seasonality, "/", openness, "/", prefix, "_", num, "_r", r, ".RData"))
-    infStrain_pre_sub <- infStrain_pre %>% filter(time %in% layers, is_functional == 1)
-    df <- infStrain_pre_sub %>% group_by(time, host_id) %>% summarise(MOI = length(unique(uniqStrain))) %>% mutate(num = nums[i], rep = r)
-    MOIAll <- rbind(MOIAll, df)
-  }
+  load(paste0(readDir, seasonality, "/", openness, "/", prefix, "_", num, "_r0.RData"))
+  infStrain_pre_sub <- infStrain_pre %>% filter(time %in% layers)
+  MOIAll <- infStrain_pre_sub %>% group_by(time, host_id) %>% summarise(MOI = length(unique(uniqStrain))) %>% mutate(num = nums[i])
   save(MOIAll, file = paste0(saveDir3, "MOI_", num, ".RData"))
 }
