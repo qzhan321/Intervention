@@ -42,7 +42,6 @@ f <- read.table(paste0("~/others/papersOfficial/FOI/analysis/utils/NbVarGenes_MO
 
 a <- min(f$DBLa_upsBC_rep_size)
 b <- max(f$DBLa_upsBC_rep_size)
-
 s_single <- max(45, b)
 
 preIRS <- 200
@@ -66,26 +65,26 @@ for (i in 1:length(nums)) {
     # save(microscopyPosHosts, file = paste0(sampledHostsSaveDir4, "rep_0", "time_", layer, ".RData"))
     infStrain_pre_sub <- infStrain_pre_sub %>% filter(host_id %in% hostsSub)
     s_temp_dat <- infStrain_pre_sub %>% group_by(host_id) %>% summarise(n = n_distinct(gene_id))
-      
+    
     s_temp <- s_temp_dat$n
     names <- s_temp_dat$host_id
     for (j in 1:length(s_temp)) {
       s <- s_temp[j]
       if (s >= a & s <= s_single*MOI_max) {
-        numerator <- 0
+        denominator <- 0
         for (b in 1:MOI_max) {
           if (!is.na(p_s_givenMOI[[as.character(b)]][as.character(s)])) {
-            numerator <- numerator + p_s_givenMOI[[as.character(b)]][as.character(s)]*MOI_priors[as.character(b)]
+            denominator <- denominator + p_s_givenMOI[[as.character(b)]][as.character(s)]*MOI_priors[as.character(b)]
           }
         }
-          
-        if (numerator == 0) {
+        
+        if (denominator == 0) {
           p_c_givens_all <- rep(0, length(1:MOI_max))
         } else {
           p_c_givens_all <- rep(NA, length(1:MOI_max))
           for (c in 1:MOI_max) {
             if (!is.na(p_s_givenMOI[[as.character(c)]][as.character(s)])) {
-              temp <- p_s_givenMOI[[as.character(c)]][as.character(s)]*MOI_priors[as.character(c)]/numerator
+              temp <- p_s_givenMOI[[as.character(c)]][as.character(s)]*MOI_priors[as.character(c)]/denominator
               names(temp) <- NULL
             } else {
               temp <- 0
@@ -93,13 +92,13 @@ for (i in 1:length(nums)) {
             p_c_givens_all[c] <- temp
           }
         }
-          
+        
         print(sum(p_c_givens_all))  
         df <- data.frame("p" = max(p_c_givens_all), "MOI" = c(1:MOI_max)[which.max(p_c_givens_all)], "numDBLaTypes" = s, 
-                         "host_id" = names[j], "num" = num, "time" = layer)
+                         "host_id" = names[j], "num" = num, "rep" = 0, "time" = layer)
         MOIAll <- rbind(MOIAll, df)
       }
     }
   }
-  save(MOIAll, file = paste0(saveDir3, "MOI_", num, ".RData"))
+  save(MOIAll, file = paste0(saveDir3, "MOI_", num, "_r0.RData"))
 }
