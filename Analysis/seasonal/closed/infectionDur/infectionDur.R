@@ -35,11 +35,9 @@ preIRS <- 200
 IRSDur <- 10
 T_YEAR <- 360
 
-IRSTypes <- c("10yIRS", "2yIRS")
-numsList <- list(c(101:110),
-                 c(1:14))
-nums_w_reps <- c(107:110,
-                 10:14)
+IRSTypes <- c("10yIRS")
+numsList <- list(101:110)
+nums_w_reps <- 107:110
 for (i in 1:length(seasonality)) {
   s <- seasonality[i]
   for (j in 1:length(openness)) {
