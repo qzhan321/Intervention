@@ -1,7 +1,7 @@
 rm(list = ls())
 suppressPackageStartupMessages({
-  library(dplyr)
   library(RSQLite)
+  library(dplyr)
 })
 
 fetchdb<-function(dbname,query,numQuery = 20000000) {
@@ -28,21 +28,20 @@ fName <- "true"
 saveDir3 <- paste0(saveDir2, fName, "/")
 dir.create(saveDir3)
 
-readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/infTablePresence/")
 prefix <- "sim"
 
 preIRS <- 200
 IRSDur <- 10
 T_YEAR <- 360
 
-IRSTypes <- c("10yIRS")
+IRSTypes <- "10yIRS"
 numsList <- list(101:110)
 nums_w_reps <- 107:110
 for (i in 1:length(seasonality)) {
   s <- seasonality[i]
   for (j in 1:length(openness)) {
     o <- openness[j]
-    for (k in c(1)) {
+    for (k in 1:length(IRSTypes)) {
       IRSType <- IRSTypes[k]
       nums <- numsList[[k]]
       
@@ -59,8 +58,8 @@ for (i in 1:length(seasonality)) {
           sc<-"select * from sampled_duration"   
           durInfo <- fetchdb(db, sc)
           durInfo <- durInfo %>% filter((time - duration > (preIRS - 3) * T_YEAR & time < preIRS * T_YEAR)| 
-                                        (time - duration > preIRS * T_YEAR & time < (preIRS + 3) * T_YEAR)|
-                                        (time - duration > (preIRS + 7) * T_YEAR & time < (preIRS + 10) * T_YEAR))
+                                          (time - duration > preIRS * T_YEAR & time < (preIRS + 3) * T_YEAR)|
+                                          (time - duration > (preIRS + 7) * T_YEAR & time < (preIRS + 10) * T_YEAR))
           durTable <- durInfo 
           durTable$rep <- r
           durTable$num <- num
