@@ -1,6 +1,5 @@
 rm(list = ls())
 suppressPackageStartupMessages({
-  library(RSQLite)
   library(dplyr)
 })
 run <- 4
@@ -19,16 +18,6 @@ fName <- "true"
 saveDir3 <- paste0(saveDir2, fName, "/")
 dir.create(saveDir3)
 
-fetchdb<-function(dbname,query,numQuery = 20000000) {
-  r<-dbSendQuery(conn=dbname, query)
-  er<-dbFetch(r,numQuery)
-  while(!dbHasCompleted(r)){
-    er <- rbind(er, dbFetch(r, numQuery))
-    print(nrow(er))
-  }
-  dbClearResult(r)
-  return(er)
-}
 samplingPeriod<-30
 preIRS <- 200
 IRSDur <- 10
