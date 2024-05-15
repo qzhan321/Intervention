@@ -1,11 +1,7 @@
 rm(list = ls())
 suppressPackageStartupMessages({
   library(RSQLite)
-  library(reshape2)
-  library(vegan)
-  library(tidyverse)
-  library(cowplot)
-  library(gridExtra)
+  library(dplyr)
 })
 run <- 4
 wd <- paste0("/scratch/midway2/qizhan/PhD/projects/intervention/simulation", run, "/actualRuns/")
@@ -22,6 +18,8 @@ fetchdb<-function(dbname,query,numQuery = 20000000) {
   dbClearResult(r)
   return(er)
 }
+
+IRSType <- "10yIRS"
 IRSType <- "2yIRS"
 
 if (IRSType == "10yIRS") {
@@ -36,11 +34,10 @@ prefix <- "sim"
 IRSDurs <- rep(10, length(numsList))
 preIRSs <- rep(200, length(numsList))
 T_YEAR <- 360
-samplingPeriod<-30
+samplingPeriod <- 30
+tStarts <- preIRSs-3
 
 SIsummaryTableCombined <- NULL
-
-tStarts <- preIRSs-3
 for (i in 1:length(numsList)) {
   nums <- numsList[[i]]
   preIRS <- preIRSs[i]
@@ -83,6 +80,8 @@ for (i in 1:length(numsList)) {
       summaryTableApp$IRS = "preIRS"
       summaryTable <- rbind(summaryTable, summaryTableApp)
       if (IRSType == "2yIRS" & all(summaryTable$Prevalence > 0)) {
+        SIsummaryTableCombined <- rbind(SIsummaryTableCombined, summaryTable)
+      } else {
         SIsummaryTableCombined <- rbind(SIsummaryTableCombined, summaryTable)
       }
       dbDisconnect(db)
