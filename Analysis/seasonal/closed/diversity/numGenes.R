@@ -1,19 +1,14 @@
 rm(list = ls())
 suppressPackageStartupMessages({
   library(RSQLite)
-  library(reshape2)
-  library(vegan)
-  library(tidyverse)
-  library(cowplot)
-  library(gridExtra)
-  library(data.table)
+  library(dplyr)
 })
 run <- 4
 wd <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/infTablePresence/")
 seasonality <- "seasonal"
 openness <- "closed"
 prefix<-"sim"
-nums <- c(101:110)
+nums <- 101:110
 saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/diversity/numGenes/")
 dir.create(saveDir0)
 saveDir1 <- paste0(saveDir0, seasonality, "/")
@@ -41,7 +36,7 @@ T_YEAR <- 360
 postIRS <- 0
 times <- c(seq(preIRS-3, preIRS+IRSDur+postIRS-1, 1)*T_YEAR+300)
 
-nums_w_reps <- c(107:110,120:123)
+nums_w_reps <- 107:110
 for (a in 1:length(nums)) {
   num <- nums[a]
   print(num)
