@@ -68,8 +68,8 @@ for (i in 1:length(nums)) {
         for (k in 1:length(MOI_considered)) {
           MOI_considered_sub <- MOI_considered[k]
           print(MOI_considered_sub)
-          AgeMOI <- Age %>% left_join(MOIsub, by = "host_id")
-          hosts1 <- AgeMOI %>% filter(age <= ageLow, MOI %in% MOI_considered_sub)
+          MOIAge <- MOISub %>% left_join(Age, by = "host_id")
+          hosts1 <- MOIAge %>% filter(age <= ageLow, MOI %in% MOI_considered_sub)
           if (nrow(hosts1) > 1) {
             hosts1 <- unique(hosts1$host_id)
             print(length(hosts1))
@@ -77,7 +77,7 @@ for (i in 1:length(nums)) {
             pts1 <- data.frame("PTS" = PTS1[row(PTS1)!=col(PTS1)], "time" = layer, "num" = num, "ageGroup" = "1-10", "MOI" = MOI_considered_sub)
             PTSAll <- rbind(PTSAll, pts1)
           }
-          hosts2 <- AgeMOI %>% filter(age >= ageHigh, MOI %in% MOI_considered_sub)
+          hosts2 <- MOIAge %>% filter(age >= ageHigh, MOI %in% MOI_considered_sub)
           if (nrow(hosts2) > 1) {
             hosts2 <- unique(hosts2$host_id)
             print(length(hosts2))
