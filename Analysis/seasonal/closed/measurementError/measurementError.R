@@ -1,11 +1,7 @@
 rm(list = ls())
 suppressPackageStartupMessages({
   library(RSQLite)
-  library(reshape2)
-  library(vegan)
-  library(tidyverse)
-  library(cowplot)
-  library(gridExtra)
+  library(dplyr)
 })
 run <- 4
 wd <- paste0("/scratch/midway2/qizhan/PhD/projects/intervention/simulation", run, "/")
