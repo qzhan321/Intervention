@@ -1,11 +1,6 @@
 rm(list = ls())
 suppressPackageStartupMessages({
-  library(RSQLite)
-  library(reshape2)
-  library(vegan)
-  library(tidyverse)
-  library(cowplot)
-  library(gridExtra)
+  library(dplyr)
 })
 
 run <- 4
@@ -28,16 +23,14 @@ preIRS <- 200
 IRSDur <- 10
 T_YEAR <- 360
 
-IRSTypes <- c("10yIRS", "2yIRS")
-numsList <- list(c(101:110),
-                 c(1:14))
-nums_w_reps <- c(107:110,
-                 10:14)
+IRSTypes <- "10yIRS"
+numsList <- list(101:110)
+nums_w_reps <- 107:110
 for (i in 1:length(seasonality)) {
   s <- seasonality[i]
   for (j in 1:length(openness)) {
     o <- openness[j]
-    for (k in c(1)) {
+    for (k in 1:length(IRSTypes)) {
       IRSType <- IRSTypes[k]
       nums <- numsList[[k]]
       
