@@ -1,12 +1,6 @@
 rm(list = ls())
 suppressPackageStartupMessages({
-  library(RSQLite)
-  library(reshape2)
-  library(vegan)
-  library(tidyverse)
-  #library(igraph)
-  library(cowplot)
-  library(scales)
+  library(dplyr)
 })
 run <- 4
 wd <- paste0("/scratch/midway2/qizhan/PhD/projects/intervention/simulation", run, "/actualRuns/")
@@ -31,7 +25,7 @@ dir.create(saveDir6)
 
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/infTablePresence/")
 prefix<-"sim"
-nums <- c(101:110)
+nums <- 101:110
 
 PTSDir<-function(mat){
   newmat<-tcrossprod(mat>0)
@@ -71,7 +65,7 @@ IRSDur <- 10
 preIRS <- 200
 T_YEAR <- 360
 postIRS <- 0
-times <- seq(preIRS - 2, preIRS + 3, 1)*T_YEAR + 300
+times <- seq(preIRS - 3, preIRS + IRSDur - 1, 1)*T_YEAR + 300
 nums_w_reps <- NULL
 for (a in 1:length(nums)) {
   num <- nums[a]
@@ -116,7 +110,6 @@ for (a in 1:length(nums)) {
           names(PTSDirMatrixList)[counter] <- paste0(t1, "-", t2)
           names(PTSNonDirMatrixList)[counter] <- paste0(t1, "-", t2)
           counter <- counter + 1
-          break
         } else {
           PTS <- tempfunction(c(t1, t2), infStrain)
           PTS_dir <- PTS[["dir"]]
