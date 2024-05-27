@@ -16,8 +16,8 @@ if (!dir.exists(saveDir1)) {
 run <- 4
 source(paste0("/home/qizhan/others/PhD/projects/intervention/writings/simulation", run, "/plots/colorFunc.R"))
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/epi/")
-openness <- c("closed")
-seasonality <- c("seasonal")
+openness <- "closed"
+seasonality <- "seasonal"
 
 preIRS <- 200
 T_YEAR <- 360
