@@ -99,7 +99,7 @@ for (i in 1:length(seasonality)) {
           temp5 <- temp3 %>% left_join(temp4, by=c("num", "time", "state", "type")) %>% mutate(p = n/nTotal)
           temp5 %>% group_by(num, time, state, type) %>% summarise(sum(p))
           temp6 <- temp5 %>% mutate(IRS = paste0("I-", num - min(nums) + 1))
-          temp6$PTSGroup <- factor(temp6$PTSGroup, levels = unique(temp6$PTSGroup))
+          temp6$PTSGroup <- factor(temp6$PTSGroup, levels = levels(cut(PTSGroups[-1], breaks = PTSGroups)))
           
           p1 <- ggplot(temp6, aes(x = PTSGroup, y = p, col = as.factor(time), fill = as.factor(time))) +
             geom_bar(stat = "identity", position = "dodge") + 
