@@ -24,6 +24,7 @@ preIRSList <- list(
 IRSDur <- 10
 IRSType <- paste0(IRSDur, "yIRS")
 postIRS <- 10 - IRSDur
+forwardYs <- 9
 
 numsPlotList <- list(
   "seasonal closed" = list(101:110),
@@ -142,7 +143,6 @@ for (i in 1:length(seasonality)) {
       file <- paste0(readDirCR, s, "/", o, "/", "summaryInfoTable-", IRSType, ".RData")
       load(file)
       summaryTable1 <- summaryTableCombined %>% filter(num %in% nums)
-      forwardYs <- 9
       summaryTable2 <- summaryTable1 %>% filter(!(time == preIRS * T_YEAR & IRS %in% c(paste0("I-", 1:16))))
       CRs <- summaryTable2 %>% select(IRS, CR) %>% group_by(IRS) %>% summarise(meanCR = mean(CR))
       SD <-  GenesAll %>% left_join(CRs, by = "IRS")
