@@ -62,7 +62,6 @@ if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
 
-forwardYs <- 9
 T_YEAR <- 360
 state <- "true"
 N <- 10000
