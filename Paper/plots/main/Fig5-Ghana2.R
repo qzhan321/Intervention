@@ -68,8 +68,8 @@ dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post 
                            state == "right post IRS (2015)" ~ "Post-IRS"))
 dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
 colnames(dfAll)[2] <- "Age"
+dfAll$Age <- factor(dfAll$Age, levels = c(">20", "11-20", "1-10"))
 ageSel <- c("1-10", ">20")
-dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
 sizeV <- 28
 nums <- c(1,4,5)
 labels <- c("Pre-IRS", "IRS", "Post-IRS")
@@ -89,8 +89,8 @@ for (i in 1:length(nums)) {
       legend.text = element_text(color="black", size=sizeV, angle=0),
       legend.title = element_text(color="black", size=sizeV, angle=0),
       strip.text = element_text(color="black", size=sizeV, angle=0)) +
-    scale_fill_manual(values=c("dark green", "magenta")) +
-    scale_color_manual(values=c("dark green", "magenta")) +
+    scale_fill_manual(values=c("magenta", "dark green")) +
+    scale_color_manual(values=c("magenta", "dark green")) +
     coord_cartesian(xlim = c(0,0.4)) + scale_alpha(guide = 'none') + 
     theme(legend.position = c(0.25, 0.65)) 
   print(p)
@@ -120,8 +120,8 @@ dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post 
                            state == "right post IRS (2015)" ~ "Post-IRS"))
 dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
 colnames(dfAll)[2] <- "Age"
+dfAll$Age <- factor(dfAll$Age, levels = c(">20", "11-20", "1-10"))
 ageSel <- c("1-10", ">20")
-dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
 sizeV <- 28
 nums <- c(1,4,5)
 labels <- c("Pre-IRS", "IRS", "Post-IRS")
@@ -142,8 +142,8 @@ for (i in 1:length(nums)) {
       legend.title = element_text(color="black", size=sizeV, angle=0),
       strip.text = element_text(color="black", size=sizeV, angle=0),
       legend.position = c(0.65, 0.65)) +
-    scale_fill_manual(values=c("dark green", "magenta")) +
-    scale_color_manual(values=c("dark green", "magenta")) +
+    scale_fill_manual(values=c("magenta", "dark green")) +
+    scale_color_manual(values=c("magenta", "dark green")) +
     coord_cartesian(xlim = c(0,0.075)) + scale_alpha(guide = 'none') + 
     guides(fill = "none", col = "none")
   print(p)
