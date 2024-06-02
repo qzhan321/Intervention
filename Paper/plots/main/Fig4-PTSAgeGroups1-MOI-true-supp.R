@@ -88,6 +88,7 @@ for (i in 1:length(seasonality)) {
         load(file)
         if (m == 1) {
           PTSAllSub <- PTSAll %>% filter(num %in% nums[m], time == layers[1], MOI %in% MOI_chosen)
+          PTSAllSub$ageGroup <- factor(PTSAllSub$ageGroup, levels = c(">=20", "1-10"))
           pts2x<-ggplot(PTSAllSub, aes(x=PTS, fill = ageGroup, col = ageGroup))+
             geom_density(alpha = 0.4, aes(group = ageGroup)) +
             ggtitle(paste0("Pre-IRS")) +
@@ -103,13 +104,14 @@ for (i in 1:length(seasonality)) {
               strip.text = element_text(color="black", size=sizeV, angle=0),
               legend.position=c(0.55,0.6)) + 
             coord_cartesian(xlim = c(0, xlimmax)) +
-            scale_fill_manual(name = "Age", values = c("dark green", "magenta")) +
+            scale_fill_manual(name = "Age", values = c("magenta", "dark green")) +
             scale_x_continuous(expand = expansion(mult = 0.1)) + 
-            scale_color_manual(name = "Age", values = c("dark green", "magenta")) +
+            scale_color_manual(name = "Age", values = c("magenta", "dark green")) +
             guides(fill = "none", col = "none")
           ggsave(paste0(saveDir5, "PTSAgeGroups-", num, "-Pre-IRS.pdf"), pts2x, width = 5, height = 5)
         }
         PTSAllSub <- PTSAll %>% filter(num %in% nums[m], time == layers[2], MOI %in% MOI_chosen)
+        PTSAllSub$ageGroup <- factor(PTSAllSub$ageGroup, levels = c(">=20", "1-10"))
         pts2x<-ggplot(PTSAllSub, aes(x = PTS, fill = ageGroup, col = ageGroup))+
           geom_density(alpha = 0.4, aes(group = ageGroup)) +
           ggtitle(paste0("I-", num - min(nums) + 1)) +
@@ -125,9 +127,9 @@ for (i in 1:length(seasonality)) {
             strip.text = element_text(color="black", size=sizeV, angle=0),
             legend.position=c(0.55,0.6)) + 
           coord_cartesian(xlim = c(0, xlimmax)) +
-          scale_fill_manual(name = "Age", values = c("dark green", "magenta")) +
+          scale_fill_manual(name = "Age", values = c("magenta", "dark green")) +
           scale_x_continuous(expand = expansion(mult = 0.1)) + 
-          scale_color_manual(name = "Age", values = c("dark green", "magenta")) +
+          scale_color_manual(name = "Age", values = c("magenta", "dark green")) +
           guides(fill = "none", col = "none")
         pts2x
         ggsave(paste0(saveDir5, "PTSAgeGroups-", num, "-IRS.pdf"), pts2x, width = 5, height = 5)
