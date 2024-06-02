@@ -58,7 +58,7 @@ immsList <- list(
 T_YEAR <- 360
 sizeV <- 25
 
-saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22/"
+saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24/"
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
