@@ -67,7 +67,6 @@ dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post 
                            state == "pre IRS" ~ "Pre-IRS",
                            state == "right post IRS (2015)" ~ "Post-IRS"))
 dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
-dfAll$age <- as.character(dfAll$age)
 colnames(dfAll)[2] <- "Age"
 ageSel <- c("1-10", ">20")
 dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
@@ -78,7 +77,7 @@ for (i in 1:length(nums)) {
   num <- nums[i]
   label <- labels[i]
   p <- ggplot(dfAll %>% filter(Age %in% ageSel, survey %in% c(paste0("survey_", num))), aes(x = PTS, col = Age, fill = Age)) +
-    geom_density(aes(group = Age, alpha = 0.1)) +
+    geom_density(aes(group = Age, alpha = 0.4)) +
     ggtitle(label) +
     xlab("PTS") + ylab("Density") +
     theme_classic() + theme(
@@ -90,8 +89,8 @@ for (i in 1:length(nums)) {
       legend.text = element_text(color="black", size=sizeV, angle=0),
       legend.title = element_text(color="black", size=sizeV, angle=0),
       strip.text = element_text(color="black", size=sizeV, angle=0)) +
-    scale_fill_manual(values=c("magenta", "dark green")) +
-    scale_color_manual(values=c("magenta", "dark green")) +
+    scale_fill_manual(values=c("dark green", "magenta")) +
+    scale_color_manual(values=c("dark green", "magenta")) +
     coord_cartesian(xlim = c(0,0.4)) + scale_alpha(guide = 'none') + 
     theme(legend.position = c(0.25, 0.65)) 
   print(p)
@@ -120,7 +119,6 @@ dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post 
                            state == "pre IRS" ~ "Pre-IRS",
                            state == "right post IRS (2015)" ~ "Post-IRS"))
 dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
-dfAll$age <- as.character(dfAll$age)
 colnames(dfAll)[2] <- "Age"
 ageSel <- c("1-10", ">20")
 dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
@@ -131,7 +129,7 @@ for (i in 1:length(nums)) {
   num <- nums[i]
   label <- labels[i]
   p <- ggplot(dfAll %>% filter(Age %in% ageSel, survey %in% c(paste0("survey_", num))), aes(x = PTS, col = Age, fill = Age)) +
-    geom_density(aes(group = Age, alpha = 0.1)) +
+    geom_density(aes(group = Age, alpha = 0.4)) +
     ggtitle(label) +
     xlab("PTS") + ylab("Density") +
     theme_classic() + theme(
@@ -144,8 +142,8 @@ for (i in 1:length(nums)) {
       legend.title = element_text(color="black", size=sizeV, angle=0),
       strip.text = element_text(color="black", size=sizeV, angle=0),
       legend.position = c(0.65, 0.65)) +
-    scale_fill_manual(values=c("magenta", "dark green")) +
-    scale_color_manual(values=c("magenta", "dark green")) +
+    scale_fill_manual(values=c("dark green", "magenta")) +
+    scale_color_manual(values=c("dark green", "magenta")) +
     coord_cartesian(xlim = c(0,0.075)) + scale_alpha(guide = 'none') + 
     guides(fill = "none", col = "none")
   print(p)
