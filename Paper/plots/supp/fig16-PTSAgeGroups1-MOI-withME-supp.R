@@ -88,6 +88,7 @@ for (i in 1:length(seasonality)) {
         load(file)
         if (m == 1) {
           PTSAllSub <- PTSAll %>% filter(num %in% nums[m], time == layers[1], MOI %in% MOI_chosen)
+          PTSAllSub$ageGroup <- factor(PTSAllSub$ageGroup, levels = c(">=20", "1-10"))
           pts2x<-ggplot(PTSAllSub, aes(x=PTS, fill = ageGroup, col = ageGroup))+
             geom_density(alpha = 0.4, aes(group = ageGroup)) +
             ggtitle(paste0("Pre-IRS")) +
@@ -110,6 +111,7 @@ for (i in 1:length(seasonality)) {
           ggsave(paste0(saveDir5, "PTSAgeGroups-", num, "-Pre-IRS.pdf"), pts2x, width = 5, height = 5)
         }
         PTSAllSub <- PTSAll %>% filter(num %in% nums[m], time == layers[2], MOI %in% MOI_chosen)
+        PTSAllSub$ageGroup <- factor(PTSAllSub$ageGroup, levels = c(">=20", "1-10"))
         pts2x<-ggplot(PTSAllSub, aes(x = PTS, fill = ageGroup, col = ageGroup))+
           geom_density(alpha = 0.4, aes(group = ageGroup)) +
           ggtitle(paste0("I-", num - min(nums) + 1)) +
