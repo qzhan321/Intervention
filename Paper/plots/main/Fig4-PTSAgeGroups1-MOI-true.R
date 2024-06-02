@@ -239,9 +239,9 @@ for (i in 1:length(seasonality)) {
               strip.text = element_text(color="black", size=sizeV, angle=0),
               legend.position=c(0.55,0.6)) + 
             coord_cartesian(xlim = c(0, 0.4)) +
-            scale_fill_manual(name = "Age", values = c("magenta", "dark green")) +
+            scale_fill_manual(name = "Age", values = c("dark green", "magenta")) +
             scale_x_continuous(expand = expansion(mult = 0.1)) + 
-            scale_color_manual(name = "Age", values = c("magenta", "dark green"))
+            scale_color_manual(name = "Age", values = c("dark green", "magenta"))
           pts2x
           ggsave(paste0(saveDir5, "PTSAgeGroups-", num, "-Pre-IRS.pdf"), pts2x, width = 5, height = 5)
         }
@@ -261,9 +261,9 @@ for (i in 1:length(seasonality)) {
             strip.text = element_text(color="black", size=sizeV, angle=0),
             legend.position=c(0.55,0.6)) + 
           coord_cartesian(xlim = c(0, 0.4)) +
-          scale_fill_manual(name = "Age", values = c("magenta", "dark green")) +
+          scale_fill_manual(name = "Age", values = c("dark green", "magenta")) +
           scale_x_continuous(expand = expansion(mult = 0.1)) + 
-          scale_color_manual(name = "Age", values = c("magenta", "dark green")) +
+          scale_color_manual(name = "Age", values = c("dark green", "magenta")) +
           guides(fill = "none", col = "none")
         pts2x
         ggsave(paste0(saveDir5, "PTSAgeGroups-", num, "-IRS.pdf"), pts2x, width = 5, height = 5)
