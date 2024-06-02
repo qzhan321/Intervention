@@ -22,12 +22,6 @@ labels <- c("Pre-IRS", "IRS", "Post-IRS")
 readDirEpi <- "/home/qizhan/others/PhD/projects/intervention/natComRevision/utils/"
 epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_070721_UChicago_080822.csv"), header = T, row.names = 1)
 epi$SeqID <- str_replace(epi$SeqID, "-", ".")
-epi <- epi %>% mutate(AgeGroups3 = case_when(
-  (AgeGroups2 == "Children (1-5 years)") ~ "1-10",
-  (AgeGroups2 == "Children (6-10 years)") ~ "1-10",
-  (AgeGroups2 == "Adolescents (11-20 years)") ~ "11-20",
-  (AgeGroups2 == "Adults (>20 years)") ~ ">20"
-))
 
 for (i in 1:length(nums)) {
   num <- nums[i]
