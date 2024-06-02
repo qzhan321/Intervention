@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
 # MOI
 sizeV <- 28
 colors <- c("black", scales::hue_pal()(5))[c(3,6)]
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/fig23/MOI2-excludeDrug/"
+saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23/MOI2-excludeDrug/"
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
@@ -63,7 +63,7 @@ ggsave(paste0(saveDir, "Ghana-MOI-survey_5.pdf"), pAll[[3]], width = 6, height =
 
 # PTS by age
 rm(list = ls())
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/fig23/PTSAgeGroups1-2-excludeDrug/"
+saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23/PTSAgeGroups1-2-excludeDrug/"
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
@@ -116,7 +116,7 @@ ggsave(paste0(saveDir, "Ghana-PTS-survey_5.pdf"), pAll[[3]], width = 6, height =
 
 # PTS zoom in
 rm(list = ls())
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/fig23/PTSAgeGroups1Zoomin-2-excludeDrug/"
+saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23/PTSAgeGroups1Zoomin-2-excludeDrug/"
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
