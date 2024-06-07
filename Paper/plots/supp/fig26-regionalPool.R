@@ -64,7 +64,7 @@ p1 <- ggplot(dfAll %>% filter(migration == "High Migration Rate"),
   scale_fill_manual(values = c("dark red", "dark green"), name  = "Seasonality") +
   scale_linetype_manual(values = c(22, "solid"), name = "Regional Pool") 
 
-saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23/prevalenceDynamicsTransientIRSPool/"
+saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig26/prevalenceDynamicsTransientIRSPool/"
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
