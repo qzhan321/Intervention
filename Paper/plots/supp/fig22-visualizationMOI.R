@@ -12,7 +12,7 @@ sizeV <- 12.5
 sizeVFactor <- 1.15
 readDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/phaseDiagram/"
 PTSTypes <- "quantileDiff"
-states <- c("withME", "true")
+states <- c("withME")
 
 saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22/MOI/"
 if (!dir.exists(saveDir0)) {
