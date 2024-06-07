@@ -33,7 +33,10 @@ numsList <- list(
                                         "Non-seasonal \nRegionally-open \nHigh Migration \nMedium Pool" = 237:243, 
                                         "Non-seasonal \nRegionally-open \nHigh Migration \nLarge Pool" = 255:263)
 )
-saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24-2/"
+saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22/PTSQuantileDiff/"
+if (!dir.exists(saveDir0)) {
+  dir.create(saveDir0)
+}
 for (i in 1:length(PTSTypes)) {
   PTSType <- PTSTypes[i]
   saveDir1 <- paste0(saveDir0, PTSType, "/")
