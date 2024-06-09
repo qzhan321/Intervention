@@ -68,7 +68,7 @@ for (i in 1:length(nums)) {
         for (k in 1:length(MOI_considered)) {
           MOI_considered_sub <- MOI_considered[k]
           print(MOI_considered_sub)
-          MOIAge <- MOISub %>% left_join(Age, by = "host_id")
+          MOIAge <- MOIsub %>% left_join(Age, by = "host_id")
           hosts1 <- MOIAge %>% filter(age <= ageLow, MOI %in% MOI_considered_sub)
           if (nrow(hosts1) > 1) {
             hosts1 <- unique(hosts1$host_id)
