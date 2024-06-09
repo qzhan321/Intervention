@@ -27,6 +27,7 @@ T_YEAR <- 360
 sizeV <- 35
 
 IRSTypes <- c("10yIRS", "2yIRS")
+ggtitles <- c("Sustained IRS", "Transient IRS")
 pAll1 <- list()
 pAll2 <- list()
 for (i in 1:length(seasonality)) {
@@ -88,10 +89,11 @@ for (i in 1:length(seasonality)) {
                   maxCR = max(n_total_bites), minCR = min(n_total_bites)) 
       CRs2 <- CRs2 %>% mutate(IRS = ifelse(IRS == "preIRS", "Pre-IRS", IRS))
       CRs2$IRS <- factor(CRs2$IRS, levels = c("Pre-IRS", paste0("I-", 1:14)))
-      p2 <- ggplot(CRs2, aes(x=time/T_YEAR - preIRS, y=mCR/N/30, col = IRS))+ 
-        geom_line(size = 1.9)+
+      p2 <- ggplot(CRs2, aes(x=time/T_YEAR - preIRS, y=mCR/N/30, col = IRS)) + 
+        geom_line(size = 1.9) +
+        ggtitle(ggtitles[k]) + 
         geom_ribbon(aes(y = mCR/N/30, ymin = minCR/N/30, ymax = maxCR/N/30), alpha = .2, linetype = 0) +
-        xlab("Years Since IRS Starts (Sustained IRS)") + ylab("Effective Contact Rate per Host per Day") +
+        xlab("Years Since IRS Starts") + ylab("Effective Contact Rate per Host per Day") +
         theme_bw() + theme(
           plot.title = element_text(color="black", size=sizeV, hjust = 0.5),
           axis.title.x = element_text(color="black", size=sizeV),
