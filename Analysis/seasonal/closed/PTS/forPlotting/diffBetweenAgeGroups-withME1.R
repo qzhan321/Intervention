@@ -6,7 +6,7 @@ run <- 4
 readDirPTS <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/PTS/")
 seasonality <- "seasonal"
 openness <- "closed"
-nums <- c(101:109, 115:121)
+nums <- 101:109
 prefix <- "sim"
 IRSDur <- 10
 preIRS <- 200
