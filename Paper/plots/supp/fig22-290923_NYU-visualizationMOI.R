@@ -13,8 +13,8 @@ sizeVFactor <- 1.15
 readDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/phaseDiagram/"
 PTSTypes <- "quantileDiff"
 states <- c("withME")
-
-saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22/MOI/"
+date <- "290923_NYU"
+saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22-", date, "/MOI/")
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
@@ -22,7 +22,7 @@ for (i in 1:length(PTSTypes)) {
   PTSType <- PTSTypes[i]
   file1 <- paste0(readDir0, "simulation", "_PTSType_", PTSType, ".RData")
   load(file1)
-  file2 <- paste0(readDir0, "Ghana", "_PTSType_", PTSType, ".RData")
+  file2 <- paste0(readDir0, "Ghana", "_PTSType_", PTSType, "-", date, ".RData")
   load(file2)
   for (j in 1:length(states)) {
     state <- states[j]
