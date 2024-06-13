@@ -9,14 +9,15 @@ pairwiseTypeSharing<-function(mat){
   return(newmat)
 }
 
-readDir <- "/project2/pascualmm/QZ/PhD/projects/FOI/files/Ghana/surveys/BC/"
-surveys <- c("survey_1", "survey_4", "survey_5")
-files <- paste0(surveys, ".csv")
+readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/GhanaIndividualSurvey/UpsBC/"
+prefix <- "survey"
+nums <- c(1,4,5)
+files <- paste0(prefix, "_", nums, ".csv")
 years <- c(2012, 2014, 2015)
 
-readDirMOI <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/MOI/MOIEst/"
-readDirEpi <- "/home/qizhan/others/PhD/projects/intervention/natComRevision/utils/"
-epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_070721_UChicago_080822.csv"), header = T, row.names = 1)
+readDirMOI <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/MOI/MOIEst/"
+readDirEpi <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/GhanaSurvey/"
+epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_290923_NYU_130324.csv"), header = T, row.names = NULL)
 epi$SeqID <- str_replace(epi$SeqID, "-", ".")
 epi <- epi %>% mutate(AgeGroups3 = case_when(
   (AgeGroups2 == "Children (1-5 years)") ~ "1-10",
@@ -28,12 +29,16 @@ epi <- epi %>% mutate(AgeGroups3 = case_when(
 PTSdfAll <- NULL
 MOIInclude <- 1:20
 for (i in 1:length(files)) {
-  survey <- surveys[i]
-  load(paste0(readDirMOI, survey, ".RData"))
+  num <- nums[i]
+  load(paste0(readDirMOI, prefix, "_", num, ".RData"))
   MOI <- outputList$indLevelMOI
   MOIAge <- MOI %>% left_join(epi %>% select("SeqID", "AgeGroups3"), by = c("HostID" = "SeqID"))
+  print(dim(MOIAge))
+  print(table(is.na(MOIAge$AgeGroups3)))
   file <- files[i]
   isolateType <- read.csv(paste0(readDir, file), header = T, row.names = 1)
+  print(table(isolateType>1))
+  print(dim(isolateType))
   PTS <- pairwiseTypeSharing(isolateType)
   
   stopifnot(identical(as.character(MOI$HostID), rownames(PTS)))
@@ -46,9 +51,12 @@ for (i in 1:length(files)) {
     for (k in 1:length(MOIInclude)) {
       MOIInclude_single <- MOIInclude[k]
       hostsSub <- MOIAge %>% filter(AgeGroups3 == ageGroup_single, MOI %in% MOIInclude_single) %>% .$HostID
+      print(length(hostsSub))
       if (length(hostsSub) > 1) {
         PTSsub <- PTS[c(hostsSub), c(hostsSub)]
-        PTSSubdf <- data.frame("PTS" = PTSsub[row(PTSsub)!=col(PTSsub)], "age" = ageGroup_single, "survey" = survey, "MOI" = MOIInclude_single)
+        stopifnot(identical(rownames(PTSsub), hostsSub))
+        stopifnot(identical(colnames(PTSsub), hostsSub))
+        PTSSubdf <- data.frame("PTS" = PTSsub[row(PTSsub)!=col(PTSsub)], "age" = ageGroup_single, "survey" = paste0(prefix, "_", num), "MOI" = MOIInclude_single)
         PTSdfAll <- rbind(PTSdfAll, PTSSubdf)
       }
     }
@@ -62,8 +70,8 @@ PTSdfAll <- PTSdfAll %>% mutate(state = case_when((survey == "survey_1")~"pre IR
                                            (survey == "survey_5")~"right post IRS (2015)"))
 PTSdfAll$age <- factor(PTSdfAll$age, levels = c("1-10", "11-20", ">20"))
 PTSdfAll$state <- factor(PTSdfAll$state, levels = c("pre IRS", "2y into IRS", "right post IRS (2015)"))
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/PTSAgeGroups1/"
+saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/PTSAgeGroups1/"
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
-save(PTSdfAll, file = paste0(saveDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015-2"))
+save(PTSdfAll, file = paste0(saveDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015"))
