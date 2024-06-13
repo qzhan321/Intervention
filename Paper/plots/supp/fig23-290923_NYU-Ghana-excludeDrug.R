@@ -8,19 +8,20 @@ suppressPackageStartupMessages({
 # MOI
 sizeV <- 28
 colors <- c("black", scales::hue_pal()(5))[c(3,6)]
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23/MOI2-excludeDrug/"
+date <- "290923_NYU"
+saveDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23-", date, "/MOI-excludeDrug/")
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/MOI/MOIEst/"
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/MOI/MOIEst/")
 pAll <- list()
 cols <- c("dark orange", "dark blue", "dark blue")
 nums <- c(1,4,5)
 prefix <- "survey"
 labels <- c("Pre-IRS", "IRS", "Post-IRS")
 
-readDirEpi <- "/home/qizhan/others/PhD/projects/intervention/natComRevision/utils/"
-epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_070721_UChicago_080822.csv"), header = T, row.names = 1)
+readDirEpi <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/GhanaSurvey/"
+epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_290923_NYU_130324.csv"), header = T, row.names = NULL)
 epi$SeqID <- str_replace(epi$SeqID, "-", ".")
 
 for (i in 1:length(nums)) {
@@ -63,13 +64,14 @@ ggsave(paste0(saveDir, "Ghana-MOI-survey_5.pdf"), pAll[[3]], width = 6, height =
 
 # PTS by age
 rm(list = ls())
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23/PTSAgeGroups1-2-excludeDrug/"
+date <- "290923_NYU"
+saveDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23-", date, "/PTSAgeGroups1-excludeDrug/")
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
 pAll <- list()
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/PTSAgeGroups1-excludeDrug/"
-load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015-2"))
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/PTSAgeGroups1-excludeDrug/")
+load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015"))
 dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post IRS (2015)")) %>% 
   mutate(state = case_when(state == "2y into IRS" ~ "IRS",
                            state == "pre IRS" ~ "Pre-IRS",
@@ -116,13 +118,14 @@ ggsave(paste0(saveDir, "Ghana-PTS-survey_5.pdf"), pAll[[3]], width = 6, height =
 
 # PTS zoom in
 rm(list = ls())
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23/PTSAgeGroups1Zoomin-2-excludeDrug/"
+date <- "290923_NYU"
+saveDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig23-", date, "/PTSAgeGroups1Zoomin-excludeDrug/")
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
 pAll <- list()
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/PTSAgeGroups1-excludeDrug/"
-load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015-2"))
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/PTSAgeGroups1-excludeDrug/")
+load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015"))
 dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post IRS (2015)")) %>% 
   mutate(state = case_when(state == "2y into IRS" ~ "IRS",
                            state == "pre IRS" ~ "Pre-IRS",
