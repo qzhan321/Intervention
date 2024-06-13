@@ -12,7 +12,8 @@ for (i in 1:length(nums)) {
   num <- nums[i]
   file <- paste0(readDir, prefix, "_", num, ".RData")
   load(file)
-  mut <- 5.64971751*10^(-7)*60*59/2/60 # primarily ectopic recombination rate, measured only in vitro
+  mut <- 5.64971751*10^(-7)*60*59/2/60 # primarily ectopic recombination rate, measured only in vitro. Alternatively, mut = 5.64971751*10^(-7)*60*59/2, but then mut/D/60 (migration brings in 60 genes at once).  
   D <- estD(matAll)
-  print(mut/D)
+  mig <- mut/D 
+  print(mig)
 }
