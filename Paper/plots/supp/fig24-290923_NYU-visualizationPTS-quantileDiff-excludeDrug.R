@@ -6,6 +6,7 @@ suppressPackageStartupMessages({
 })
 sizeV <- 20
 sizeVFactor <- 1.15
+date <- "290923_NYU"
 readDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/phaseDiagram/"
 PTSTypes <- "quantileDiff"
 firstup <- function(x) {
@@ -15,7 +16,7 @@ firstup <- function(x) {
 PTSQuantileThreshold <- 0.40
 quantilesChosen <- seq(0,1,0.001)
 xtext <- seq(0, PTSQuantileThreshold, length.out = 3)
-saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24/PTSQuantileDiffExcludeDrug/"
+saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24-", date, "/PTSQuantileDiffExcludeDrug/")
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
@@ -29,7 +30,7 @@ for (i in 1:length(PTSTypes)) {
   if (!dir.exists(saveDir2)) {
     dir.create(saveDir2)
   }
-  file1 <- paste0(readDir0, "Ghana", "_PTSType_", PTSType, "-excludeDrug.RData")
+  file1 <- paste0(readDir0, "Ghana", "_PTSType_", PTSType, "-excludeDrug-", date, ".RData")
   load(file1)
   PTSdfAllGhana <- PTSdfAllGhana %>% mutate(Regime = paste0("Ghana ", state))
   dfPlotGhana <- PTSdfAllGhana %>% filter(
