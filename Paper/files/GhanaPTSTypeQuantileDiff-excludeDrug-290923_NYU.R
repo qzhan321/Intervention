@@ -6,9 +6,10 @@ suppressPackageStartupMessages({
 MOIdfAllGhana <- NULL
 prefix <- "survey"
 nums <- c(1,4,5)
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/MOI/MOIEst/"
-readDirEpi <- "/home/qizhan/others/PhD/projects/intervention/natComRevision/utils/"
-epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_070721_UChicago_080822.csv"), header = T, row.names = 1)
+date <- "290923_NYU"
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/MOI/MOIEst/")
+readDirEpi <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/GhanaSurvey/")
+epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_290923_NYU_130324.csv"), header = T, row.names = NULL)
 epi$SeqID <- str_replace(epi$SeqID, "-", ".")
 epi <- epi %>% mutate(AgeGroups3 = case_when(
   (AgeGroups2 == "Children (1-5 years)") ~ "1-10",
@@ -30,7 +31,7 @@ for (i in 1:length(nums)) {
 
 PTSdfAllGhana <- NULL
 states <- c("pre IRS", "2y into IRS", "right post IRS (2015)")
-file = "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/PTSAgeGroups1-excludeDrug/PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015-2"
+file = paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/PTSAgeGroups1-excludeDrug/PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015")
 load(file)
 for (i in 1:length(states)) {
   s <- states[i]
@@ -49,5 +50,5 @@ for (i in 1:length(states)) {
 }
 PTSType <- "quantileDiff"
 saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/phaseDiagram/"
-save(MOIdfAllGhana, PTSdfAllGhana, file = paste0(saveDir, "Ghana", "_PTSType_", PTSType, "-excludeDrug.RData"))
+save(MOIdfAllGhana, PTSdfAllGhana, file = paste0(saveDir, "Ghana", "_PTSType_", PTSType, "-excludeDrug-", date, ".RData"))
 
