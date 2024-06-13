@@ -33,7 +33,8 @@ numsList <- list(
                                         "Non-seasonal \nRegionally-open \nHigh Migration \nMedium Pool" = 237:243, 
                                         "Non-seasonal \nRegionally-open \nHigh Migration \nLarge Pool" = 255:263)
 )
-saveDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22/PTSQuantileDiff/"
+date <- "290923_NYU"
+saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22-", date, "/PTSQuantileDiff/")
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
@@ -53,7 +54,7 @@ for (i in 1:length(PTSTypes)) {
   }
   file1 <- paste0(readDir0, "simulation", "_PTSType_", PTSType, ".RData")
   load(file1)
-  file2 <- paste0(readDir0, "Ghana", "_PTSType_", PTSType, ".RData")
+  file2 <- paste0(readDir0, "Ghana", "_PTSType_", PTSType, "-", date, ".RData")
   load(file2)
   for (j in 1:length(states)) {
     state <- states[j]
