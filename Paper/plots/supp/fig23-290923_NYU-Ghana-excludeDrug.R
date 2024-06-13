@@ -77,8 +77,8 @@ dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post 
                            state == "pre IRS" ~ "Pre-IRS",
                            state == "right post IRS (2015)" ~ "Post-IRS"))
 dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
-dfAll$age <- as.character(dfAll$age)
 colnames(dfAll)[2] <- "Age"
+dfAll$Age <- factor(dfAll$Age, levels = c(">20", "11-20", "1-10"))
 ageSel <- c("1-10", ">20")
 dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
 sizeV <- 28
@@ -88,7 +88,7 @@ for (i in 1:length(nums)) {
   num <- nums[i]
   label <- labels[i]
   p <- ggplot(dfAll %>% filter(Age %in% ageSel, survey %in% c(paste0("survey_", num))), aes(x = PTS, col = Age, fill = Age)) +
-    geom_density(aes(group = Age, alpha = 0.1)) +
+    geom_density(aes(group = Age, alpha = 0.4)) +
     ggtitle(label) +
     xlab("PTS") + ylab("Density") +
     theme_classic() + theme(
@@ -131,8 +131,8 @@ dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post 
                            state == "pre IRS" ~ "Pre-IRS",
                            state == "right post IRS (2015)" ~ "Post-IRS"))
 dfAll$state <- factor(dfAll$state, levels = c("Pre-IRS", "IRS", "Post-IRS"))
-dfAll$age <- as.character(dfAll$age)
 colnames(dfAll)[2] <- "Age"
+dfAll$Age <- factor(dfAll$Age, levels = c(">20", "11-20", "1-10"))
 ageSel <- c("1-10", ">20")
 dfAll <- dfAll %>% mutate("MOI_label" = paste0("MOI = ", MOI))
 sizeV <- 28
@@ -142,7 +142,7 @@ for (i in 1:length(nums)) {
   num <- nums[i]
   label <- labels[i]
   p <- ggplot(dfAll %>% filter(Age %in% ageSel, survey %in% c(paste0("survey_", num))), aes(x = PTS, col = Age, fill = Age)) +
-    geom_density(aes(group = Age, alpha = 0.1)) +
+    geom_density(aes(group = Age, alpha = 0.4)) +
     ggtitle(label) +
     xlab("PTS") + ylab("Density") +
     theme_classic() + theme(
