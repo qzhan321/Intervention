@@ -3,12 +3,12 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(stringr)
 })
-readDir <- "/project2/pascualmm/QZ/PhD/projects/FOI/files/Ghana/surveys/BC/"
+readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/GhanaIndividualSurvey/Alltypes/"
 prefix <- "survey"
 nums <- 1:2
 
-readDirEpi <- "/home/qizhan/others/PhD/projects/intervention/natComRevision/utils/"
-epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_070721_UChicago_080822.csv"), header = T, row.names = 1)
+readDirEpi <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/GhanaSurvey/"
+epi <- read.csv(paste0(readDirEpi, "Ghana_Survey_Merged_Epi_MOI_S1_S7_290923_NYU_130324.csv"), header = T, row.names = NULL)
 epi$SeqID <- str_replace(epi$SeqID, "-", ".")
 areas <- c("VeaGowrie", "Soe") 
 
