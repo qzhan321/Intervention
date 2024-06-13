@@ -1,12 +1,12 @@
 rm(list = ls())
 suppressPackageStartupMessages({
-  library(ggplot2)
   library(dplyr)
 })
 MOIdfAllGhana <- NULL
 prefix <- "survey"
 nums <- c(1,4,5)
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/MOI/MOIEst/"
+date <- "290923_NYU"
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/MOI/MOIEst/")
 for (i in 1:length(nums)) {
   num <- nums[i]
   file <- paste0(readDir, prefix, "_", num, ".RData")
@@ -19,7 +19,7 @@ for (i in 1:length(nums)) {
 
 PTSdfAllGhana <- NULL
 states <- c("pre IRS", "2y into IRS", "right post IRS (2015)")
-file = "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/PTSAgeGroups1/PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015-2"
+file = paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/PTSAgeGroups1/PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015")
 load(file)
 for (i in 1:length(states)) {
   s <- states[i]
@@ -38,5 +38,5 @@ for (i in 1:length(states)) {
 }
 PTSType <- "quantileDiff"
 saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/phaseDiagram/"
-save(MOIdfAllGhana, PTSdfAllGhana, file = paste0(saveDir, "Ghana", "_PTSType_", PTSType, ".RData"))
+save(MOIdfAllGhana, PTSdfAllGhana, file = paste0(saveDir, "Ghana", "_PTSType_", PTSType, "-", date, ".RData"))
 
