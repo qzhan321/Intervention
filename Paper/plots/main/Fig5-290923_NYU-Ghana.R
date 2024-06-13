@@ -7,11 +7,12 @@ suppressPackageStartupMessages({
 # MOI
 sizeV <- 28
 colors <- c("black", scales::hue_pal()(5))[c(3,6)]
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/Fig5/MOI2/"
+date <- "290923_NYU"
+saveDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/Fig5-", date, "/MOI/")
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/MOI/MOIEst/"
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/MOI/MOIEst/")
 pAll <- list()
 cols <- c("dark orange", "dark blue", "dark blue")
 nums <- c(1,4,5)
@@ -55,13 +56,14 @@ ggsave(paste0(saveDir, "Ghana-MOI-survey_5.pdf"), pAll[[3]], width = 6, height =
 
 # PTS by age
 rm(list = ls())
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/Fig5/PTSAgeGroups1-2/"
+date <- "290923_NYU"
+saveDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/Fig5-", date, "/PTSAgeGroups1/")
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
 pAll <- list()
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/PTSAgeGroups1/"
-load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015-2"))
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/PTSAgeGroups1/")
+load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015"))
 dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post IRS (2015)")) %>% 
   mutate(state = case_when(state == "2y into IRS" ~ "IRS",
                            state == "pre IRS" ~ "Pre-IRS",
@@ -107,13 +109,14 @@ ggsave(paste0(saveDir, "Ghana-PTS-survey_5.pdf"), pAll[[3]], width = 6, height =
 
 # PTS zoom in
 rm(list = ls())
-saveDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/Fig5/PTSAgeGroups1Zoomin-2/"
+date <- "290923_NYU"
+saveDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/Fig5-", date, "/PTSAgeGroups1Zoomin/")
 if (!dir.exists(saveDir)) {
   dir.create(saveDir)
 }
 pAll <- list()
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5/PTSAgeGroups1/"
-load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015-2"))
+readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-", date, "/PTSAgeGroups1/")
+load(file = paste0(readDir, "PTS-BC-byAge-separateMOI-1-to-20-combineYoungAgeGroups-add2015"))
 dfAll <- PTSdfAll %>% filter(state %in% c("pre IRS", "2y into IRS", "right post IRS (2015)")) %>% 
   mutate(state = case_when(state == "2y into IRS" ~ "IRS",
                            state == "pre IRS" ~ "Pre-IRS",
