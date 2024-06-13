@@ -3,7 +3,7 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(stringr)
 })
-readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/GhanaIndividualSurvey/Alltypes/"
+readDir <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/figures/main/Fig5-290923_NYU/GhanaIndividualSurvey/UpsBC/"
 prefix <- "survey"
 nums <- 1:2
 
@@ -33,8 +33,11 @@ for (i in 1:length(nums)) {
     index <- which(rownames(filecsv) %in% location$SeqID)
     indexSum <- indexSum + length(index)
     mat <- filecsv[index, , drop=F]
-    mat2 <- as.data.frame(colSums(mat))
+    print(dim(mat))
+    stopifnot(identical(rownames(mat), location$SeqID))
+    mat2 <- as.data.frame(unname(colSums(mat)))
     colnames(mat2) <- area
+    print(dim(mat2))
     matAll <- bind_cols(matAll, mat2)
   }
   stopifnot(indexSum == nrow(filecsv))
