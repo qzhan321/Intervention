@@ -5,7 +5,6 @@ suppressPackageStartupMessages({
   library(ggpubr)
 })
 run <- 4
-source(paste0("/home/qizhan/others/PhD/projects/intervention/writings/simulation", run, "/plots/colorFunc.R"))
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/infectionDur/")
 openness <- c("closed", "semi-open", "regionally-open")
 seasonality <- c("seasonal", "non-seasonal")
