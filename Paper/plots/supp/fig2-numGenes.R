@@ -4,7 +4,6 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(ggpubr)
 })
-scaleFUN <- function(x) sprintf("%.2f", x)
 run <- 4
 source(paste0("/home/qizhan/others/PhD/projects/intervention/writings/simulation", run, "/plots/colorFunc.R"))
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/diversity/")
