@@ -5,7 +5,6 @@ suppressPackageStartupMessages({
   library(cowplot)
 })
 run <- 4
-source(paste0("/home/qizhan/others/PhD/projects/intervention/writings/simulation", run, "/plots/colorFunc.R"))
 saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/main/Fig3/PTSCompleteOverlap2/")
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
