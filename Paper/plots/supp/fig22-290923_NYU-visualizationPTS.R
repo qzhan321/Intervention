@@ -34,7 +34,7 @@ numsList <- list(
                                         "Non-seasonal \nRegionally-open \nHigh Migration \nLarge Pool" = 255:263)
 )
 date <- "290923_NYU"
-saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22-", date, "/PTSQuantileDiff/")
+saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig22-", date, "/PTS/")
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
