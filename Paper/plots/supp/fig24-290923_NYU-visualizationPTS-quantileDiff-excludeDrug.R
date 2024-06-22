@@ -16,7 +16,7 @@ firstup <- function(x) {
 PTSQuantileThreshold <- 0.40
 quantilesChosen <- seq(0,1,0.001)
 xtext <- seq(0, PTSQuantileThreshold, length.out = 3)
-saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24-", date, "/PTSQuantileDiffExcludeDrug/")
+saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24-", date, "/PTSExcludeDrug/")
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
