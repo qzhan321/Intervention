@@ -4,7 +4,6 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 run <- 4
-source(paste0("/home/qizhan/others/PhD/projects/intervention/writings/simulation", run, "/plots/colorFunc.R"))
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/PTSAgeDiff1/")
 openness <- "semi-open"
 seasonality <- "non-seasonal"
