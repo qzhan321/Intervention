@@ -28,8 +28,6 @@ sizeV <- 35
 
 IRSTypes <- c("10yIRS", "2yIRS")
 ggtitles <- c("Sustained IRS", "Transient IRS")
-pAll1 <- list()
-pAll2 <- list()
 for (i in 1:length(seasonality)) {
   s <- seasonality[i]
   saveDir2 <- paste0(saveDir1, s, "/")
@@ -43,7 +41,8 @@ for (i in 1:length(seasonality)) {
     if (!dir.exists(saveDir3)) {
       dir.create(saveDir3)
     }
-    
+    pAll1 <- list()
+    pAll2 <- list()
     for (k in 1:length(IRSTypes)) {
       IRSType <- IRSTypes[k]
       if (IRSType == "2yIRS") {
@@ -112,12 +111,11 @@ for (i in 1:length(seasonality)) {
       index <- length(pAll2)
       pAll2[[index + 1]] <- p2
     }
+    part1 <- pAll1[[1]] 
+    part2 <- pAll2[[1]] + rremove("xlab") + rremove("ylab") + theme(axis.text.x = element_text(color="white", size=sizeV, angle=0))
+    part3 <- pAll2[[2]] + rremove("xlab") + rremove("ylab")
+    ggsave(paste0(saveDir3, "IRSContactRate-1.pdf"), part1, width = 10.5, height = 6)
+    ggsave(paste0(saveDir3, "IRSContactRate-2.pdf"), part2, width = 6.4, height = 5.5)
+    ggsave(paste0(saveDir3, "IRSContactRate-3.pdf"), part3, width = 6.4, height = 5.5)
   }
 }
-part1 <- pAll1[[1]] 
-part2 <- pAll2[[1]] + rremove("xlab") + rremove("ylab") + theme(axis.text.x = element_text(color="white", size=sizeV, angle=0))
-part3 <- pAll2[[2]] + rremove("xlab") + rremove("ylab")
-ggsave(paste0(saveDir3, "IRSContactRate-1.pdf"), part1, width = 10.5, height = 6)
-ggsave(paste0(saveDir3, "IRSContactRate-2.pdf"), part2, width = 6.4, height = 5.5)
-ggsave(paste0(saveDir3, "IRSContactRate-3.pdf"), part3, width = 6.4, height = 5.5)
-
