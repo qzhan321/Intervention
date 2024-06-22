@@ -14,7 +14,7 @@ sizeVFactor <- 1.15
 readDir0 <- "/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/files/phaseDiagram/"
 PTSTypes <- "quantileDiff"
 states <- c("withME")
-saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24-", date, "/MOI/")
+saveDir0 <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/natComRevision/plots/figures/supp/fig24-", date, "/MOIExcludeDrug/")
 if (!dir.exists(saveDir0)) {
   dir.create(saveDir0)
 }
