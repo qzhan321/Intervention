@@ -100,7 +100,7 @@ for (i in 1:length(seasonality)) {
           legend.text = element_text(color="black", size=sizeV, angle=0),
           legend.title = element_text(color="black", size=sizeV, angle=0),
           strip.text = element_text(color="black", size=sizeV, angle=0)) + 
-        theme(legend.position = c(0.6, 0.89)) +
+        # theme(legend.position = c(0.6, 0.89)) +
         scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
         scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
         # guides(col = "none", fill = "none") + 
