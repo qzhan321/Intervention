@@ -105,7 +105,8 @@ for (i in 1:length(seasonality)) {
                                                 vD = ifelse(is.na(vD), 0, vD),
                                                 vMOI = ifelse(is.na(vMOI), 0, vMOI))
       summaryTable5 <- summaryTable4 %>% mutate(timePlot = time/T_YEAR - preIRS)  
-      summaryTable5$IRS <- factor(summaryTable5$IRS, levels = c("preIRS", paste0("I-", 1:16)))
+      summaryTable5 <- summaryTable5 %>% mutate(IRS = ifelse(IRS == "preIRS", "Pre-IRS", IRS))
+      summaryTable5$IRS <- factor(summaryTable5$IRS, levels = c("Pre-IRS", paste0("I-", 1:16)))
       if (s == "seasonal" & o == "closed") {
         ytitleC <- "black"
         ytextC <- "black"
