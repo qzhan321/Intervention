@@ -144,9 +144,9 @@ for (i in 1:length(seasonality)) {
           strip.text = element_text(color="black", size=sizeV, angle=0),
           plot.margin = unit(c(5,10,5,5), "points")) + 
         coord_cartesian(ylim = c(0, 1)) +
-        scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
-        scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
-        scale_x_continuous(breaks = seq(-2, 10, 2)) + guides(fill = "none", col = "none")
+        scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)], name = "") +
+        scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)], name = "") +
+        scale_x_continuous(breaks = seq(-2, 10, 2)) 
       print(p1)
       
       
@@ -182,8 +182,13 @@ for (i in 1:length(seasonality)) {
         coord_cartesian(ylim = c(0, 1))
       epiCR
       
-      ggsave(paste0(saveDir3, "num-", min(nums), "-", max(nums), "-time.pdf"), p1, width = 6, height = 6)
+      ggsave(paste0(saveDir3, "num-", min(nums), "-", max(nums), "-time.pdf"), p1 + guides(fill = "none", col = "none"), width = 6, height = 6)
       ggsave(paste0(saveDir3, "num-", min(nums), "-", max(nums), "-cr.pdf"), epiCR, width = 6.45, height = 7.45)
+      
+      if (s == "seasonal" & o == "regionally-open" & identical(nums, 219:229)) {
+        p1_legend <- get_legend(p1)
+        ggsave(paste0(saveDir3, "num-", min(nums), "-", max(nums), "-lg.pdf"), p1_legend, width = 6, height = 6)
+      }
     }
   }
 }
