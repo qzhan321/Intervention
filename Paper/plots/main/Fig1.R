@@ -101,8 +101,8 @@ for (i in 1:length(seasonality)) {
           legend.title = element_text(color="black", size=sizeV, angle=0),
           strip.text = element_text(color="black", size=sizeV, angle=0)) + 
         # theme(legend.position = c(0.6, 0.89)) +
-        scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
-        scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
+        scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)], name = "") +
+        scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)], name = "") +
         # guides(col = "none", fill = "none") + 
         scale_x_continuous(breaks = seq(-2,10,2))
       print(p2)
@@ -117,9 +117,9 @@ for (i in 1:length(seasonality)) {
     ggsave(paste0(saveDir3, "IRSContactRate-3.pdf"), part3 + guides(col = "none", fill = "none"), width = 6.4, height = 5.5)
     
     p2_legend <- get_legend(part2)
-    ggsave(paste0(saveDir3, "IRSContactRate-2-lg.pdf"), p2_legend, width = 6, height = 6)
+    ggsave(paste0(saveDir3, "IRSContactRate-2-lg.pdf"), p2_legend, width = 8, height = 8)
     
     p3_legend <- get_legend(part3)
-    ggsave(paste0(saveDir3, "IRSContactRate-3-lg.pdf"), p3_legend, width = 6, height = 6)
+    ggsave(paste0(saveDir3, "IRSContactRate-3-lg.pdf"), p3_legend, width = 8, height = 8)
   }
 }
