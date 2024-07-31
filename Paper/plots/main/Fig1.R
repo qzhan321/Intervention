@@ -18,16 +18,14 @@ source(paste0("/home/qizhan/others/PhD/projects/intervention/writings/simulation
 readDir <- paste0("/project2/pascualmm/QZ/PhD/projects/intervention/files", run, "/actualRuns/epi/")
 openness <- "closed"
 seasonality <- "seasonal"
-
 preIRS <- 200
 T_YEAR <- 360
-
 N <- 10000
 T_YEAR <- 360
 sizeV <- 35
 
-IRSTypes <- c("10yIRS", "2yIRS")
-ggtitles <- c("Sustained IRS", "Transient IRS")
+IRSTypes <- c("2yIRS", "10yIRS")
+ggtitles <- c("Transient IRS", "Sustained IRS")
 for (i in 1:length(seasonality)) {
   s <- seasonality[i]
   saveDir2 <- paste0(saveDir1, s, "/")
@@ -52,8 +50,8 @@ for (i in 1:length(seasonality)) {
       }
       file <- paste0(readDir, s, "/", o, "/", "summaryInfoTable-", IRSType, ".RData")
       load(file)
-      if (IRSType == "10yIRS") {
-        summaryTable1 <- summaryTableCombined %>% filter(num %in% nums)
+      if (IRSType == "2yIRS") {
+        summaryTable1 <- summaryTableCombined %>% filter(num %in% nums, time <= (preIRS + 2)*T_YEAR)
         summaryTable2 <- summaryTable1 %>% filter(!(time == preIRS * T_YEAR & IRS %in% paste0("I-", 1:14)))
         CRs <- summaryTable2 %>% select(IRS, CR) %>% group_by(IRS) %>% 
           summarise(meanCR = mean(CR)) %>%
@@ -105,7 +103,7 @@ for (i in 1:length(seasonality)) {
         theme(legend.position = c(0.6, 0.89)) +
         scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
         scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
-        guides(col = "none", fill = "none") + 
+        # guides(col = "none", fill = "none") + 
         scale_x_continuous(breaks = seq(-2,10,2))
       print(p2)
       index <- length(pAll2)
@@ -115,7 +113,13 @@ for (i in 1:length(seasonality)) {
     part2 <- pAll2[[1]] + rremove("xlab") + rremove("ylab") + theme(axis.text.x = element_text(color="white", size=sizeV, angle=0))
     part3 <- pAll2[[2]] + rremove("xlab") + rremove("ylab")
     ggsave(paste0(saveDir3, "IRSContactRate-1.pdf"), part1, width = 10.5, height = 6)
-    ggsave(paste0(saveDir3, "IRSContactRate-2.pdf"), part2, width = 6.4, height = 5.5)
-    ggsave(paste0(saveDir3, "IRSContactRate-3.pdf"), part3, width = 6.4, height = 5.5)
+    ggsave(paste0(saveDir3, "IRSContactRate-2.pdf"), part2 + guides(col = "none", fill = "none"), width = 6.4, height = 5.5)
+    ggsave(paste0(saveDir3, "IRSContactRate-3.pdf"), part3 + guides(col = "none", fill = "none"), width = 6.4, height = 5.5)
+    
+    p2_legend <- get_legend(part2)
+    ggsave(paste0(saveDir3, "IRSContactRate-2-lg.pdf"), p2_legend, width = 6, height = 6)
+    
+    p3_legend <- get_legend(part3)
+    ggsave(paste0(saveDir3, "IRSContactRate-3-lg.pdf"), p3_legend, width = 6, height = 6)
   }
 }
