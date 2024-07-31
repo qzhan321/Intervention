@@ -85,7 +85,8 @@ for (i in 1:length(seasonality)) {
                                                 vD = ifelse(is.na(vD), 0, vD),
                                                 vMOI = ifelse(is.na(vMOI), 0, vMOI))
       summaryTable5 <- summaryTable4 %>% mutate(timePlot = time/T_YEAR - preIRS) 
-      summaryTable5$IRS <- factor(summaryTable5$IRS, levels = c("preIRS", paste0("I-", 1:16)))
+      summaryTable5 <- summaryTable5 %>% mutate(IRS = ifelse(IRS == "preIRS", "Pre-IRS", IRS))
+      summaryTable5$IRS <- factor(summaryTable5$IRS, levels = c("Pre-IRS", paste0("I-", 1:16)))
       p1 <- ggplot(summaryTable5, aes(timePlot, mP, col = IRS, fill = IRS))+ 
         geom_line(size = pointSize)+
         geom_ribbon(aes(y = mP, ymin = minP, ymax = maxP), alpha = .4, linetype = 0) +
@@ -101,9 +102,9 @@ for (i in 1:length(seasonality)) {
           strip.text = element_text(color="black", size=sizeV, angle=0),
           plot.margin = unit(c(5,10,5,5), "points")) + 
         coord_cartesian(ylim = c(0, 1)) +
-        scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
-        scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)]) +
-        scale_x_continuous(breaks = seq(-2, 10, 2)) + guides(fill = "none", col = "none")
+        scale_color_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)], name = "") +
+        scale_fill_manual(values = Turbo(out.colors = 17)[1:(length(nums)+1)], name = "") +
+        scale_x_continuous(breaks = seq(-2, 10, 2)) 
       print(p1)
       
       summaryTable3 <- summaryTable2 %>% select(time, num, year, Prevalence, CR, rep, IRS)
@@ -143,6 +144,8 @@ for (i in 1:length(seasonality)) {
       ggsave(paste0(saveDir3, "num-", min(nums), "-", max(nums), "-time.pdf"), p1_rmL, width = 6, height = 6)
       ggsave(paste0(saveDir3, "num-", min(nums), "-", max(nums), "-cr.pdf"), p2_rmL, width = 6, height = 6)
       
+      p1_legend <- get_legend(p1)
+      ggsave(paste0(saveDir3, "lg.pdf"), p1_legend, width = 6, height = 6)
     }
   }
 }
